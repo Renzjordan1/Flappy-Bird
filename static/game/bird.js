@@ -28,6 +28,7 @@ class Bird {
     this.score = 0;
     this.die = 0;
     this.ground = false;
+    this.life;
 
     //AI
     if (this.ai) {
@@ -132,6 +133,10 @@ class Bird {
     //BIRD MOVE
     this.y += this.speed;
 
+    if (this.death == false) {
+      this.life++;
+    }
+
     //BIRD HITS GROUND
     if (this.y + this.radius >= fg.y) {
       this.y = fg.y - this.h / 2;
@@ -162,5 +167,6 @@ class Bird {
 
   score1() {
     this.score = 0;
+    this.life = 0;
   }
 }

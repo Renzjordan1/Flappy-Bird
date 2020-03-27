@@ -104,7 +104,7 @@ class NeuralNetwork {
           let r = Math.random();
           if (r < rate) {
             let w = values[j];
-            values[j] = w + (Math.random() * (-w, w) + -w);
+            values[j] = w + randomGaussian();
           }
         }
         let newTensor = tf.tensor(values, shape);

@@ -195,7 +195,7 @@ cvs.addEventListener("click", function(evt) {
         state.current = state.game;
         evo = true;
         players = 0;
-        robots = 50;
+        robots = 250;
         birdList = [];
         botList = [];
       }
@@ -926,12 +926,12 @@ function update() {
 }
 
 //LOOP
-function loop() {
+function loopy() {
   update();
   draw();
   frames++;
 
-  requestAnimationFrame(loop);
+  requestAnimationFrame(loopy);
 }
 
-loop();
+loopy();

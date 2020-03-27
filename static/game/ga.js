@@ -76,7 +76,8 @@ function pickOne(parent1) {
 function calculateFitness() {
   let sum = 0;
   for (let bird of oldList) {
-    bird.score = Math.pow(bird.score, 4);
+    bird.score = Math.pow(bird.score + bird.life, 3);
+    console.log(bird.life);
 
     sum = sum + bird.score;
   }

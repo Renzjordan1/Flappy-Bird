@@ -185,29 +185,53 @@ cvs.addEventListener("click", function(evt) {
         state.current = state.difficult;
       }
 
-      //EVOLUTION
+      // //EVOLUTION
+      // if (
+      //   clickX >= evoPlayer.x &&
+      //   clickX <= evoPlayer.w &&
+      //   clickY >= evoPlayer.y &&
+      //   clickY <= evoPlayer.y + evoPlayer.h
+      // ) {
+      //   state.current = state.game;
+      //   evo = true;
+      //   players = 0;
+      //   robots = 250;
+      //   birdList = [];
+      //   botList = [];
+      // }
+      for (var i = 0; i < players; i++) {
+        birdList.push(
+          new Bird(cvs.width / 2, cvs.height / 2, 34, "yellow", false)
+        );
+      }
+      // for (var i = 0; i < robots; i++) {
+      //   botList.push(new Bird(cvs.width / 2, cvs.height / 2, 34, "blue", true));
+      // }
+      // break;
+
+      //2P VS
       if (
         clickX >= evoPlayer.x &&
         clickX <= evoPlayer.w &&
         clickY >= evoPlayer.y &&
         clickY <= evoPlayer.y + evoPlayer.h
       ) {
-        state.current = state.game;
-        evo = true;
-        players = 0;
-        robots = 250;
-        birdList = [];
+        players = 2;
+        robots = 0;
+        birdList = [
+          new Bird(cvs.width / 2, cvs.height / 2, 34, "yellow", true)
+        ];
         botList = [];
+        state.current = state.game;
+        for (var i = 0; i < players - 1; i++) {
+          birdList.push(
+            new Bird(cvs.width / 2, cvs.height / 2, 34, "blue", false)
+          );
+        }
       }
-      for (var i = 0; i < players; i++) {
-        birdList.push(
-          new Bird(cvs.width / 2, cvs.height / 2, 34, "yellow", false)
-        );
-      }
-      for (var i = 0; i < robots; i++) {
-        botList.push(new Bird(cvs.width / 2, cvs.height / 2, 34, "blue", true));
-      }
+
       break;
+
 
     case state.difficult:
       if (
@@ -249,7 +273,7 @@ cvs.addEventListener("click", function(evt) {
         robots = 1;
         birdList = [];
         botList = [
-          new Bird(cvs.width / 2, cvs.height / 2, 34, "blue", true, IMPOSSIBLE)
+          new Bird(cvs.width / 2, cvs.height / 2, 34, "blue", true, HARD)
         ];
         state.current = state.game;
       }
@@ -259,22 +283,22 @@ cvs.addEventListener("click", function(evt) {
         clickY >= impossibleMode.y &&
         clickY <= impossibleMode.y + impossibleMode.h
       ) {
-        players = 2;
-        robots = 0;
-        birdList = [
-          new Bird(cvs.width / 2, cvs.height / 2, 34, "yellow", true)
+        players = 1;
+        robots = 1;
+        birdList = [];
+        botList = [
+          new Bird(cvs.width / 2, cvs.height / 2, 34, "blue", true, IMPOSSIBLE)
         ];
-        botList = [];
         state.current = state.game;
       }
-      if (
-        !(
-          clickX >= impossibleMode.x &&
-          clickX <= impossibleMode.w &&
-          clickY >= impossibleMode.y &&
-          clickY <= impossibleMode.y + impossibleMode.h
-        )
-      ) {
+      // if (
+      //   !(
+      //     clickX >= impossibleMode.x &&
+      //     clickX <= impossibleMode.w &&
+      //     clickY >= impossibleMode.y &&
+      //     clickY <= impossibleMode.y + impossibleMode.h
+      //   )
+      // ) {
         for (var i = 0; i < players; i++) {
           birdList.push(
             new Bird(cvs.width / 2, cvs.height / 2, 34, "yellow", false)
@@ -285,13 +309,13 @@ cvs.addEventListener("click", function(evt) {
             new Bird(cvs.width / 2, cvs.height / 2, 34, "blue", true)
           );
         }
-      } else {
-        for (var i = 0; i < players - 1; i++) {
-          birdList.push(
-            new Bird(cvs.width / 2, cvs.height / 2, 34, "blue", false)
-          );
-        }
-      }
+      // } else {
+      //   for (var i = 0; i < players - 1; i++) {
+      //     birdList.push(
+      //       new Bird(cvs.width / 2, cvs.height / 2, 34, "blue", false)
+      //     );
+      //   }
+      // }
       console.log(birdList, botList);
       break;
   }
@@ -442,7 +466,7 @@ const localPlayer = new menuBox(
   0.1,
   cvs.width,
   cvs.height / 4,
-  "LOCAL MULTIPLAYER",
+  "VS. CPU",
   offSet
 );
 const evoPlayer = new menuBox(
@@ -450,7 +474,7 @@ const evoPlayer = new menuBox(
   0.1,
   cvs.width,
   cvs.height / 4,
-  "EVOLUTION",
+  "LOCAL 2-Player VS.",
   2 * offSet
 );
 
@@ -478,7 +502,7 @@ const impossibleMode = new menuBox(
   0.1,
   cvs.width,
   cvs.height / 5,
-  "VS HUMAN",
+  "IMPOSSIBLE",
   3 * offSet2
 );
 

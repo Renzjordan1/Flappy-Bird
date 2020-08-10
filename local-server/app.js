@@ -3,6 +3,8 @@ require('@tensorflow/tfjs-node');
 var path = require('path');
 const fs = require('fs');
 
+dir = path.join(__dirname, '../');
+
 // const model = tf.sequential();
 // model.add(tf.layers.dense({units: 1, inputShape: [1]}));
 
@@ -12,7 +14,7 @@ let app = express();
 
 console.log("saved");
 
-var txt = fs.readFileSync('C://Users//Renzjordan1//Documents//CodeProjects//FlappyBird//static//models//scores.json', 'utf8');
+var txt = fs.readFileSync(dir + '//static//models//scores.json', 'utf8');
 // Parse it  back to object
 scores = JSON.parse(txt);
 // scores={};
@@ -28,11 +30,11 @@ app.engine('html', require('ejs').renderFile);
 
 app.get('/bird', function(req, res) {
     // res.send("hello");
-    res.sendFile('C://Users//Renzjordan1//Documents//CodeProjects//FlappyBird//static//flappyBird.html');
+    res.sendFile(dir + '//static//flappyBird.html');
 });
 
 app.get('/name', function(req, res) {
-    res.sendFile('C://Users//Renzjordan1//Documents//CodeProjects//FlappyBird//static//name.html');
+    res.sendFile(dir  + '//static//name.html');
 
 });
 
@@ -50,19 +52,19 @@ app.post('/leader', function(req, res) {
 
       // var json = JSON.stringify(scores, null, 2);
 
-      fs.writeFileSync('C://Users//Renzjordan1//Documents//CodeProjects//FlappyBird//static//models//scores.json', json, 'utf8');
+      fs.writeFileSync(dir  + '//static//models//scores.json', json, 'utf8');
   }
   res.redirect('/board');
 });
 
 app.get('/board', function(req, res) {
-  const x = fs.readFileSync('C://Users//Renzjordan1//Documents//CodeProjects//FlappyBird//static//models//scores.json', 'utf8');
+  const x = fs.readFileSync(dir  + '//static//models//scores.json', 'utf8');
   var y = JSON.parse(x);
   y.sort((a, b) => b.score - a.score);
 
   // console.log(y);
 
-  res.render('C://Users//Renzjordan1//Documents//CodeProjects//FlappyBird//static//leader.ejs', {scores:y});
+  res.render(dir  + '//static//leader.ejs', {scores:y});
 
 
 });

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Flappy Bird</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Teko:700"
+    />
+
+    <style>
+      canvas {
+        border: 1px solid #000;
+        display: block;
+        margin: 0 auto;
+      }
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  background-color: #111;
+}
+    </style>
+  </head>
+  <body>
+    <ul>
+  <li><a href="http://localhost:81/bird">Game</a></li>
+  <li><a href="http://localhost:81/board">Leaderboard</a></li>
+</ul>
+    Player 1: SPACE</br> Player 2: ENTER </br> GO BACK TO MAIN MENU (NOT WHILE PLAYING): ESC
+    <canvas id="bird" width="320" height="480"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@0.10.2/lib/p5.js"></script>
+
+    <script src="game/ga.js"></script>
+    <script src="game/nn.js"></script>
+    <script src="game/bird.js"></script>
+    <script src="game/menuBox.js"></script>
+    <script src="game/game.js"></script>
+
+    
+  </body>
+</html>

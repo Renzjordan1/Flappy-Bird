@@ -3,7 +3,7 @@ require('@tensorflow/tfjs-node');
 var path = require('path');
 const fs = require('fs');
 
-dir = path.join(__dirname, '../');
+dir = path.join(__dirname);
 
 // const model = tf.sequential();
 // model.add(tf.layers.dense({units: 1, inputShape: [1]}));
@@ -24,7 +24,7 @@ app.use(function(req, res, next){
     next();
 });
 
-app.use(express.static("../static"));
+app.use(express.static("static"));
 app.use(express.urlencoded());
 app.engine('html', require('ejs').renderFile);
 

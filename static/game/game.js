@@ -721,7 +721,7 @@ function death() {
 
     for (i = 0; i < botList.length; i++) {
       if (botList[i].death == true) {
-        console.log("death");
+        // console.log("death");
         // if (botList[i].die == 0) {
         //   // deaths++;
         // }
@@ -743,7 +743,7 @@ function death() {
         for (i = 0; i < botList.length; i++) {
           oldList[i] = botList[i];
         }
-        console.log("death");
+        // console.log("death");
         state.current = state.over;
         // console.log(birdList);
         // console.log("death");

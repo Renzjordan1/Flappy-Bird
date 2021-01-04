@@ -2,11 +2,16 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="user-scalable=no"/>
     <title>Flappy Bird</title>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Teko:700"
     />
+    <link rel="icon" 
+      type="image/jpg" 
+      href="img/icon.jpg"
+      sizes="16x16">
 
     <style>
       canvas {
@@ -42,11 +47,11 @@ li a:hover {
   </head>
   <body>
     <ul>
-  <li><a href="http://localhost:81/bird">Game</a></li>
-  <li><a href="http://localhost:81/board">Leaderboard</a></li>
+  <li><a href="/">Game</a></li>
+  <li><a href="/board">Leaderboard</a></li>
 </ul>
     Player 1: SPACE</br> Player 2: ENTER </br> GO BACK TO MAIN MENU (NOT WHILE PLAYING): ESC
-    <canvas id="bird" width="320" height="480"></canvas>
+    <canvas id="bird" width="320px" height="480px"></canvas>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/p5@0.10.2/lib/p5.js"></script>
 

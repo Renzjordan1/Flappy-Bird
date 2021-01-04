@@ -3,6 +3,9 @@ require('@tensorflow/tfjs-node');
 var path = require('path');
 const fs = require('fs');
 
+const host = '0.0.0.0';
+const port = process.env.PORT || 3000;
+
 dir = path.join(__dirname);
 
 // const model = tf.sequential();
@@ -11,6 +14,18 @@ dir = path.join(__dirname);
 // model.save('file://./models');
 let express = require("express");
 let app = express();
+
+const mongodb = require('mongodb');
+var assert = require('assert');
+var assert = require('assert');
+
+// Get a Mongo client to work with the Mongo server
+var MongoClient = mongodb.MongoClient;
+
+// Define where the MongoDB server is
+var url = process.env.MONGODB_URI || 'input here';
+
+
 
 console.log("saved");
 
@@ -28,7 +43,7 @@ app.use(express.static("static"));
 app.use(express.urlencoded());
 app.engine('html', require('ejs').renderFile);
 
-app.get('/bird', function(req, res) {
+app.get('/', function(req, res) {
     // res.send("hello");
     res.sendFile(dir + '//static//flappyBird.html');
 });
@@ -39,37 +54,95 @@ app.get('/name', function(req, res) {
 });
 
 app.post('/leader', function(req, res) {
+
+
   const user = req.body.user;
-  const score = req.body.score;
-  console.log(score);
-  var x = {};
-  x["name"] = user;
-  x["score"] = Number(score);
-  if(score>=0){
-      scores.push(x);
-      // res.send(scores);
-      var json = JSON.stringify(scores, null, 2);
+  const score = Number(req.body.score);
+  MongoClient.connect(url, function (err, client) {
+    if (err) {
+    console.log('Unable to connect to the Server', err);
+  } else {
+      var db = client.db('Scores');
 
-      // var json = JSON.stringify(scores, null, 2);
+    // We are connected
+    console.log('Connection established to', url);
+ 
+    // Get the documents collection
+    var collection = db.collection('board');
+ 
 
-      fs.writeFileSync(dir  + '//static//models//scores.json', json, 'utf8');
+    add(collection, score, user, res);
+
   }
-  res.redirect('/board');
+  });
+  // console.log(score);
+  // var x = {};
+  // x["name"] = user;
+  // x["score"] = Number(score);
+  // if(score>=0){
+  //     scores.push(x);
+  //     // res.send(scores);
+  //     var json = JSON.stringify(scores, null, 2);
+
+  //     // var json = JSON.stringify(scores, null, 2);
+
+  //     fs.writeFileSync(dir  + '//static//models//scores.json', json, 'utf8');
+  // }
+  // res.redirect('/board');
 });
+
+function add(collection, score, name, res){
+    collection.insertOne({
+      score: score,
+      name: name
+    }).then(function(response){
+      res.redirect('/board');
+    } );
+}
+function find(collection, res){
+    collection.find().sort({"score": -1}).toArray().then(function(items) {
+      console.log(items);
+      res.render(dir  + '//static//leader.ejs', {scores:items});
+    });
+
+
+}
 
 app.get('/board', function(req, res) {
-  const x = fs.readFileSync(dir  + '//static//models//scores.json', 'utf8');
-  var y = JSON.parse(x);
-  y.sort((a, b) => b.score - a.score);
+  console.log('gey');
 
-  // console.log(y);
+  // Connect to the server
+  MongoClient.connect(url, function (err, client) {
+  if (err) {
+    console.log('Unable to connect to the Server', err);
+  } else {
+    var db = client.db('Scores');
+    // We are connected
+    console.log('Connection established to', url);
+ 
+    // Get the documents collection
+    var collection = db.collection('board');
+ 
 
-  res.render(dir  + '//static//leader.ejs', {scores:y});
+    find(collection, res);
+    // console.log("y: " + y);
+
+
+
+
+    // res.render(dir  + '//static//leader.ejs', {scores:y});
+  }
+  });
+
+  // const x = fs.readFileSync(dir  + '//static//models//scores.json', 'utf8');
+  // var y = JSON.parse(x);
+  // y.sort((a, b) => b.score - a.score);
+
 
 
 });
 
-app.listen(81, function() {
-    console.log("Serving static on 81");
+app.listen(port, host, function() {
+    console.log("Serving static on 3000");
 });
 

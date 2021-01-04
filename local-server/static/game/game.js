@@ -30,7 +30,7 @@ var evoBest = 0;
 (async function() {
   console.log("hello");
   let model = await tf.loadLayersModel(
-    "http://localhost:81/models/modelsEASY.json"
+    "/models/modelsEASY.json"
   );
   let x = model.getWeights();
   EASY.model.setWeights(x);
@@ -39,7 +39,7 @@ var evoBest = 0;
 (async function() {
   console.log("hello");
   let model = await tf.loadLayersModel(
-    "http://localhost:81/models/modelsMEDIUM.json"
+    "/models/modelsMEDIUM.json"
   );
   let x = model.getWeights();
   MEDIUM.model.setWeights(x);
@@ -48,7 +48,7 @@ var evoBest = 0;
 (async function() {
   console.log("hello");
   let model = await tf.loadLayersModel(
-    "http://localhost:81/models/modelsHARD.json"
+    "/models/modelsHARD.json"
   );
   let x = model.getWeights();
   HARD.model.setWeights(x);
@@ -57,7 +57,7 @@ var evoBest = 0;
 (async function() {
   console.log("hello");
   let model = await tf.loadLayersModel(
-    "http://localhost:81/models/modelsIMPOSSIBLE.json"
+    "/models/modelsIMPOSSIBLE.json"
   );
   let x = model.getWeights();
   IMPOSSIBLE.model.setWeights(x);
@@ -318,6 +318,14 @@ cvs.addEventListener("click", function(evt) {
       // }
       console.log(birdList, botList);
       break;
+
+      case state.game:
+        if (birdList[0].death == false) {
+            birdList[0].flap();
+            FLAP.play();
+          }
+      break;
+
   }
 });
 
@@ -542,7 +550,7 @@ var gap = 95;
 const pipe = {
   //STORE PIPE POSITIONS (MAX 2)
   position: [
-    [cvs.width + 100, Math.floor(Math.random() * (fg.y - gap) + -h), 0]
+    [cvs.width + 100, Math.floor((Math.random()*(.75-.25)+.25)* (fg.y - gap) + -h), 0]
   ],
 
   top: {
@@ -676,7 +684,7 @@ const pipe = {
         ) {
           this.position.push([
             cvs.width,
-            Math.floor(Math.random() * (fg.y - 85) + -400),
+            Math.floor((Math.random()*(.75-.25)+.25) * (fg.y - 95) + -400),
             0
           ]);
 
@@ -699,7 +707,7 @@ const pipe = {
 
   reset: function() {
     this.position = [
-      [cvs.width + 100, Math.floor(Math.random() * (fg.y - 85) + -400), 0]
+      [cvs.width + 100, Math.floor((Math.random()*(.75-.25)+.25) * (fg.y - 95) + -400), 0]
     ];
     this.speed = 3;
     this.hit = 0;

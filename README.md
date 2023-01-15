@@ -29,7 +29,7 @@ node app.js
 ## Usage example
 
 A few motivating and useful examples of how your product can be used. Spice this up with code blocks and potentially more screenshots.
-<a href="https://ibb.co/tq2NrHP"><img src="https://i.ibb.co/T40n3wq/Recording-2023-01-15-at-17-53-10.gif" alt="Recording-2023-01-15-at-17-53-10" border="0"></a>
+![](https://i.ibb.co/T40n3wq/Recording-2023-01-15-at-17-53-10.gif)
 
 
 

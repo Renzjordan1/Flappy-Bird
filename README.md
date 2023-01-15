@@ -8,9 +8,27 @@ technique called Neuroevolution. Additonally, high scores are stored during your
 
 This web app is currently deployed on https://flappy-bird-renzjordan.onrender.com/ (as of Jan. 2023).
 
+<br/>
+
+## Examples of Features
+
+* Single-Player:
+
+![Single-Player](https://media.giphy.com/media/nARVPwDIpgMNlTMNhq/giphy.gif)
 
 
-![](header.png)
+
+* Versus CPU/2-Player:
+
+![CPU](https://media.giphy.com/media/Fl4T5NC9MKBG86vPWb/giphy.gif)
+
+
+
+* Leaderboard (upload last run's score):
+
+![Score](https://media.giphy.com/media/IpBeiaD4xwxBzY75pE/giphy.gif)
+
+
 
 ## How to Run on your Local Machine
 
@@ -27,25 +45,6 @@ Run:
 node app.js
 ```
 
-## Examples of Features
-
-* Single-Player:
-
-![Single-Player](https://media.giphy.com/media/nARVPwDIpgMNlTMNhq/giphy.gif)
-
-
-
-
-* Versus CPU/2-Player:
-
-![CPU](https://media.giphy.com/media/Fl4T5NC9MKBG86vPWb/giphy.gif)
-
-
-
-
-* Leaderboard (upload last run's score):
-
-![Score](https://media.giphy.com/media/IpBeiaD4xwxBzY75pE/giphy.gif)
 
 
 ## Tech Stack

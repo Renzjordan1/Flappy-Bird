@@ -32,6 +32,11 @@ This web app is currently deployed on https://flappy-bird-renzjordan.onrender.co
 
 ## How to Run on your Local Machine
 
+Clone:
+
+```sh
+git clone https://github.com/Renzjordan1/Flappy-Bird
+```
 
 Install:
 

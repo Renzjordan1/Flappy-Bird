@@ -5,7 +5,7 @@
         "start": "node app.js"
     },
     "dependencies": {
-        "@tensorflow/tfjs-node": "^1.2.11",
+        "@tensorflow/tfjs-node": "^4.2.0",
         "ejs": "^2.7.1",
         "express": "^4.17.1",
         "kerberos": "^1.1.3",

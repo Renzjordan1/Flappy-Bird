@@ -30,7 +30,7 @@ This web app is currently deployed on https://flappy-bird-renzjordan.onrender.co
 
 
 
-## How to Run on your Local Machine
+## How to Run on your Local Machine (NOTE: Leaderboard won't work due to using a environment variable for MongoDB access)
 
 Clone:
 

@@ -1,4 +1,4 @@
-# Flappy-Bird Fall 2019
+# Flappy Bird - Fall 2019
 > Flappy Bird Game with Local Multiplayer and CPU trained with Neuroevolution
 
 
